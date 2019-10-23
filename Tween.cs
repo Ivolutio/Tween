@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace DigitalRuby.Tween
+namespace WobbleSoft.UnityTween
 {
     /// <summary>
     /// State of an ITween object
