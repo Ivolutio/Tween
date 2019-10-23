@@ -1,6 +1,6 @@
 # Tween
-Modified and uploaded for personal use and safekeeping - src: https://www.digitalruby.com/unity-plugins/
-Built for use within Unity3D, tested with 2019.3beta
+Tweening library built for Unity3D, tested with 2019.3beta.
+Originally created by DigitalRuby (https://www.digitalruby.com/unity-plugins/)
 
 ## Documentation
 ### Avaliable Methods
