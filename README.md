@@ -1,5 +1,5 @@
 # WobbleTween
-Tweening library built for Unity3D, tested with 2019.3beta.
+Tweening library built for Unity3D, tested with 2019.3beta.   
 Originally created by DigitalRuby (https://www.digitalruby.com/unity-plugins/)
 
 ## Documentation
