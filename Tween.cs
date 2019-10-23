@@ -1,8 +1,8 @@
 /*
 The MIT License (MIT)
-Copyright (c) 2016 Digital Ruby, LLC
-http://www.digitalruby.com
-Created by Jeff Johnson
+Copyright (c) 2019 WobbleSoft
+https://www.wobble-soft.com
+Created by Ivo Ketelaar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace DigitalRuby.Tween
+namespace WobbleSoft.UnityTween
 {
     /// <summary>
     /// State of an ITween object
@@ -130,15 +130,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>FloatTween</returns>
-        public static FloatTween Tween(object key, float start, float end, float duration, Func<float, float> scaleFunc, System.Action<ITween<float>> progress, System.Action<ITween<float>> completion = null)
+        public static FloatTween Tween(object key, float start, float end, float duration, System.Action<ITween<float>> progress = null, System.Action<ITween<float>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             FloatTween t = new FloatTween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -152,15 +153,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>Vector2Tween</returns>
-        public static Vector2Tween Tween(object key, Vector2 start, Vector2 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector2>> progress, System.Action<ITween<Vector2>> completion = null)
+        public static Vector2Tween Tween(object key, Vector2 start, Vector2 end, float duration, System.Action<ITween<Vector2>> progress, System.Action<ITween<Vector2>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             Vector2Tween t = new Vector2Tween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -174,15 +176,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>Vector3Tween</returns>
-        public static Vector3Tween Tween(object key, Vector3 start, Vector3 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector3>> progress, System.Action<ITween<Vector3>> completion = null)
+        public static Vector3Tween Tween(object key, Vector3 start, Vector3 end, float duration, System.Action<ITween<Vector3>> progress, System.Action<ITween<Vector3>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             Vector3Tween t = new Vector3Tween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -196,15 +199,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>Vector4Tween</returns>
-        public static Vector4Tween Tween(object key, Vector4 start, Vector4 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector4>> progress, System.Action<ITween<Vector4>> completion = null)
+        public static Vector4Tween Tween(object key, Vector4 start, Vector4 end, float duration, System.Action<ITween<Vector4>> progress = null, System.Action<ITween<Vector4>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             Vector4Tween t = new Vector4Tween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -217,15 +221,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>ColorTween</returns>
-        public static ColorTween Tween(object key, Color start, Color end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Color>> progress, System.Action<ITween<Color>> completion = null)
+        public static ColorTween Tween(object key, Color start, Color end, float duration, System.Action<ITween<Color>> progress = null, System.Action<ITween<Color>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             ColorTween t = new ColorTween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -238,15 +243,16 @@ namespace DigitalRuby.Tween
         /// <param name="start">Start value</param>
         /// <param name="end">End value</param>
         /// <param name="duration">Duration in seconds</param>
-        /// <param name="scaleFunc">Scale function</param>
+        /// <param name="ease">Scale function</param>
         /// <param name="progress">Progress handler</param>
         /// <param name="completion">Completion handler</param>
         /// <returns>QuaternionTween</returns>
-        public static QuaternionTween Tween(object key, Quaternion start, Quaternion end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Quaternion>> progress, System.Action<ITween<Quaternion>> completion = null)
+        public static QuaternionTween Tween(object key, Quaternion start, Quaternion end, float duration, System.Action<ITween<Quaternion>> progress = null, System.Action<ITween<Quaternion>> completion = null, Func<float, float> ease = null)
         {
+            if (ease == null) ease = TweenScaleFunctions.Linear;
             QuaternionTween t = new QuaternionTween();
             t.Key = key;
-            t.Setup(start, end, duration, scaleFunc, progress, completion);
+            t.Setup(start, end, duration, ease, progress, completion);
             t.Start();
             AddTween(t);
 
@@ -377,7 +383,7 @@ namespace DigitalRuby.Tween
         /// <returns>FloatTween</returns>
         public static FloatTween Tween(this GameObject obj, object key, float start, float end, float duration, Func<float, float> scaleFunc, System.Action<ITween<float>> progress, System.Action<ITween<float>> completion = null)
         {
-            FloatTween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            FloatTween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
@@ -397,7 +403,7 @@ namespace DigitalRuby.Tween
         /// <returns>Vector2Tween</returns>
         public static Vector2Tween Tween(this GameObject obj, object key, Vector2 start, Vector2 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector2>> progress, System.Action<ITween<Vector2>> completion = null)
         {
-            Vector2Tween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            Vector2Tween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
@@ -417,7 +423,7 @@ namespace DigitalRuby.Tween
         /// <returns>Vector3Tween</returns>
         public static Vector3Tween Tween(this GameObject obj, object key, Vector3 start, Vector3 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector3>> progress, System.Action<ITween<Vector3>> completion = null)
         {
-            Vector3Tween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            Vector3Tween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
@@ -437,7 +443,7 @@ namespace DigitalRuby.Tween
         /// <returns>Vector4Tween</returns>
         public static Vector4Tween Tween(this GameObject obj, object key, Vector4 start, Vector4 end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Vector4>> progress, System.Action<ITween<Vector4>> completion = null)
         {
-            Vector4Tween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            Vector4Tween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
@@ -456,7 +462,7 @@ namespace DigitalRuby.Tween
         /// <returns>ColorTween</returns>
         public static ColorTween Tween(this GameObject obj, object key, Color start, Color end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Color>> progress, System.Action<ITween<Color>> completion = null)
         {
-            ColorTween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            ColorTween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
@@ -475,7 +481,7 @@ namespace DigitalRuby.Tween
         /// <returns>QuaternionTween</returns>
         public static QuaternionTween Tween(this GameObject obj, object key, Quaternion start, Quaternion end, float duration, Func<float, float> scaleFunc, System.Action<ITween<Quaternion>> progress, System.Action<ITween<Quaternion>> completion = null)
         {
-            QuaternionTween t = TweenFactory.Tween(key, start, end, duration, scaleFunc, progress, completion);
+            QuaternionTween t = TweenFactory.Tween(key, start, end, duration, progress, completion, scaleFunc);
             t.GameObject = obj;
             t.Renderer = obj.GetComponent<Renderer>();
             return t;
