@@ -46,7 +46,7 @@ TweenFactory.Tween("", 0f, 10f, 1f,
 //Fade out color
 Color faded = spriteRenderer.color;
 faded.a = 0f;
-TweenFactory.Tween("fadeout", spriteRenderer.color, hoverColor, 1f,
+TweenFactory.Tween("fadeout", spriteRenderer.color, faded, 1f,
     (progress) => {
         spriteRenderer.color = progress.CurrentValue;
     },
